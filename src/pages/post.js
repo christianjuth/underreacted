@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react"
+// import { Link } from "gatsby"
 // import Image from "../components/image"
 // import SEO from "../components/seo"
 
 
 import client from '../client';
-import { Section, Text, Divider, Grid, Link, Theme } from '../components';
+import { Section, Text, Divider, ActivityIndicator, Theme, Grid, Link } from '../components';
 import dayjs from 'dayjs';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { BLOCKS, MARKS } from '@contentful/rich-text-types';
 import profile from '../images/profile.png';
+import { BLOCKS, MARKS } from '@contentful/rich-text-types';
 let { Row, Col } = Grid;
 
 
@@ -23,23 +24,39 @@ let options = {
 };
 
 
-function IndexPage(){
+function IndexPage({ title }){
   let { colors } = Theme.useTheme(),
-    [items, setItems] = useState([]);
+    [item, setItem] = useState();
+
+  console.log(title);
 
   useEffect(() => {
-    client.getEntries()
-    .then(function (entries) {
-      console.log(entries.items);
-      setItems(entries.items);
+    client.getEntries({
+      content_type: 'blogPost',
+      'fields.title[match]': title.replace(/-/g, ' ')
+    }).then(function (entries) {
+      setItem(entries.items[0]);
     });
-  }, []);
+  }, [title]);  
 
+  if(!item) return <ActivityIndicator.Screen/>;
+
+  let { fields, sys } = item;
   return (
     <div style={{flexDirection: 'column'}}>
-      <Section paddingBottom={20}>
+      <Section paddingBottom={0}>
         <Text variant='h3'>Underreacted</Text>
-        <br/>
+      </Section>
+
+      <Section>
+        {/* <SEO title="Home" /> */}
+        <Text variant='h1' color='primary'>{fields.title}</Text>
+        <Text variant='p'>{dayjs(sys.updatedAt).format('MMMM DD, YYYY')}</Text>
+        <Divider/>
+        {documentToReactComponents(fields.content, options)}
+      </Section>
+
+      <Section>
         <div style={{
           width: 370, 
           border: `1px solid ${colors.divider}`, 
@@ -58,21 +75,8 @@ function IndexPage(){
           </Row>
         </div>
       </Section>
-      <Section>
-        {/* <SEO title="Home" /> */}
-        {items.map(({fields, sys}) => (
-          <Link key={fields.title} to={`/${fields.title.toLowerCase().replace(/\s/g, '-')}`} style={{textDecoration: 'none'}}>
-            <Text variant='h2' color='primary'>{fields.title}</Text>
-            <Text variant='p'>{dayjs(sys.updatedAt).format('MMMM DD, YYYY')}</Text>
-            <Text variant='p' noPadding>{fields.subtitle}</Text>
-            <br/>
-            <Divider/>
-            <br/>
-          </Link>
-        ))}
-      </Section>
     </div>
   );
 }
 
-export default IndexPage
+export default IndexPage;
