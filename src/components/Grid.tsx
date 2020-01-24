@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { window } from 'browser-monads';
 import * as CSS from 'csstype';
 const Context = React.createContext({breakPoint: null, spacing: 0});
 
@@ -132,13 +133,19 @@ function Provider(props) {
   const [breakPoint, setBreakPoint] = useState(getBreakpoint());
 
   useEffect(() => {
-    const onLayout = () => setBreakPoint(getBreakpoint());
+    const onLayout = () => {
+      console.log('onLayout:', getBreakpoint());
+      setBreakPoint(getBreakpoint());
+    };
     onLayout();
+    window.addEventListener('load', onLayout);
     window.addEventListener('resize', onLayout);
+    setTimeout(() => onLayout(), 5000);
     return () => {
+      window.removeEventListener('load', onLayout);
       window.removeEventListener('resize', onLayout);
     }
-  }, []);
+  }, [window]);
 
   return (
     <Context.Provider value={{breakPoint, spacing: 0}}>

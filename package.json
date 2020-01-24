@@ -7,6 +7,7 @@
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^13.4.0",
     "@contentful/rich-text-types": "^13.4.0",
+    "browser-monads": "^1.0.0",
     "contentful": "^7.13.1",
     "csstype": "^2.6.8",
     "dayjs": "^1.8.19",

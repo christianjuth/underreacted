@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+// import { window } from 'browser-monads';
 import { theme as themeType } from '../types';
 import { theme } from '../constants';
 
@@ -10,8 +11,25 @@ function prefersDark(): boolean {
 
 function Provider({ children }: { children: any }) {
 
-  let darkMode = prefersDark(),
-    activeTheme: themeType = darkMode ? theme.dark : theme.light;
+  let [activeTheme, setActiveTheme] = useState<themeType>(theme.dark);
+
+  useEffect(() => {
+    const updateTheme = () => {
+      if(prefersDark()) {
+        setActiveTheme(theme.dark);
+      } else {
+        setActiveTheme(theme.light);
+      }
+    };
+    updateTheme();
+    window.addEventListener('load', updateTheme);
+    window.addEventListener('resize', updateTheme);
+    setTimeout(() => updateTheme(), 5000);
+    return () => {
+      window.removeEventListener('load', updateTheme);
+      window.removeEventListener('resize', updateTheme);
+    }
+  }, [window]);
 
   useEffect(() => {
     document.body.style.background = activeTheme.colors.background;

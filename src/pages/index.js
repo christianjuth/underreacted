@@ -30,7 +30,6 @@ function IndexPage(){
   useEffect(() => {
     client.getEntries()
     .then(function (entries) {
-      console.log(entries.items);
       setItems(entries.items);
     });
   }, []);
