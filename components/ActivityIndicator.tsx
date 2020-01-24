@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Dots } from 'react-activity';
 import { Grid, Theme } from '.';
-import 'react-activity/dist/react-activity.css';
  
 function ActivityIndicator() {
   const [visible, setVisible] = useState(false);
@@ -29,7 +28,7 @@ export function ActivityIndicatorScreen() {
       justifyContent: 'center',
       alignItems: 'center',
       
-      backgroundColor: colors.surface,
+      backgroundColor: colors.background,
       zIndex: 500,
     }}>
       <ActivityIndicator />

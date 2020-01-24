@@ -5,10 +5,10 @@ import { useTheme } from './Theme';
 interface TextProps extends CSS.Properties {
   children: React.ReactNode,
   variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span',
-  style: CSS.Properties,
-  color: string,
-  className: string,
-  noPadding: boolean
+  style?: CSS.Properties,
+  color?: string,
+  className?: string,
+  noPadding?: boolean
 };
 
 function Text({ children, color, variant, noPadding, style, className, ...cssProperties }: TextProps) {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { useRouter } from 'next/router';
 // import { Link } from "gatsby"
 // import Image from "../components/image"
 // import SEO from "../components/seo"
@@ -8,10 +9,10 @@ import client from '../client';
 import { Section, Text, Divider, ActivityIndicator, Theme, Grid, Link } from '../components';
 import dayjs from 'dayjs';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import profile from '../images/profile.png';
 import { BLOCKS, MARKS } from '@contentful/rich-text-types';
 let { Row, Col } = Grid;
 
+let profile = require('../images/profile.png');
 
 
 let options = {
@@ -24,20 +25,25 @@ let options = {
 };
 
 
-function IndexPage({ title }){
-  let { colors } = Theme.useTheme(),
+function IndexPage(){
+  let { query } = useRouter(),
+    { colors } = Theme.useTheme(),
     [item, setItem] = useState();
 
-  console.log(title);
-
   useEffect(() => {
+    let { title } = query;
+
+    console.log(title);
+
+    let computedTitle = typeof title === "string" ? title.replace(/-/g, ' ') : title[0].replace(/-/g, ' ');
+
     client.getEntries({
       content_type: 'blogPost',
-      'fields.title[match]': title.replace(/-/g, ' ')
+      'fields.title[match]': computedTitle
     }).then(function (entries) {
       setItem(entries.items[0]);
     });
-  }, [title]);  
+  }, [query.title]);  
 
   if(!item) return <ActivityIndicator.Screen/>;
 
@@ -69,7 +75,7 @@ function IndexPage({ title }){
             </Col>
             <Col justifyContent='center'>
               <Text variant='p' noPadding>
-                Personal blog of <Link to='https://christianjuth.com'>Christian Juth</Link><br/> Everything I say with a grain of salt
+                Personal blog of <Link href='https://christianjuth.com'>Christian Juth</Link><br/> Everything I say with a grain of salt
               </Text>
             </Col>
           </Row>

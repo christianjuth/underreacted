@@ -4,13 +4,13 @@ import React, { useState, useEffect } from "react"
 
 
 import client from '../client';
-import { Section, Text, Divider, Grid, Link, Theme } from '../components';
+import { Section, Text, Divider, Grid, Theme, Link } from '../components';
 import dayjs from 'dayjs';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, MARKS } from '@contentful/rich-text-types';
-import profile from '../images/profile.png';
 let { Row, Col } = Grid;
 
+let profile = require('../images/profile.png');
 
 
 let options = {
@@ -36,7 +36,7 @@ function IndexPage(){
 
   return (
     <div style={{flexDirection: 'column'}}>
-      <Section paddingBottom={20}>
+      <Section paddingBottom="20px">
         <Text variant='h3'>Underreacted</Text>
         <br/>
         <div style={{
@@ -51,7 +51,7 @@ function IndexPage(){
             </Col>
             <Col justifyContent='center'>
               <Text variant='p' noPadding>
-                Personal blog of <Link to='https://christianjuth.com'>Christian Juth</Link><br/> Everything I say with a grain of salt
+                Personal blog of <Link href='https://christianjuth.com'>Christian Juth</Link><br/> Everything I say with a grain of salt
               </Text>
             </Col>
           </Row>
@@ -60,14 +60,19 @@ function IndexPage(){
       <Section>
         {/* <SEO title="Home" /> */}
         {items.map(({fields, sys}) => (
-          <Link key={fields.title} to={`/${fields.title.toLowerCase().replace(/\s/g, '-')}`} style={{textDecoration: 'none'}}>
+          <Link.Next 
+            key={fields.title} 
+            href='/[title]' 
+            as={`/${fields.title.toLowerCase().replace(/\s/g, '-')}`}
+            style={{textDecoration: 'none'}}
+          >
             <Text variant='h2' color='primary'>{fields.title}</Text>
             <Text variant='p'>{dayjs(sys.updatedAt).format('MMMM DD, YYYY')}</Text>
             <Text variant='p' noPadding>{fields.subtitle}</Text>
             <br/>
             <Divider/>
             <br/>
-          </Link>
+          </Link.Next>
         ))}
       </Section>
     </div>

@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-// import { window } from 'browser-monads';
+import { window } from 'browser-monads';
 import { theme as themeType } from '../types';
 import { theme } from '../constants';
 
@@ -21,9 +21,9 @@ function Provider({ children }: { children: any }) {
         setActiveTheme(theme.light);
       }
     };
-    updateTheme();
-    window.addEventListener('load', updateTheme);
-    window.addEventListener('resize', updateTheme);
+    // updateTheme();
+    // window.addEventListener('load', updateTheme);
+    // window.addEventListener('resize', updateTheme);
     setTimeout(() => updateTheme(), 5000);
     return () => {
       window.removeEventListener('load', updateTheme);

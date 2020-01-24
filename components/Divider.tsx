@@ -3,7 +3,7 @@ import * as CSS from 'csstype';
 import { useTheme } from './Theme';
 
 interface DividerProps extends CSS.Properties {
-  style: CSS.Properties
+  style?: CSS.Properties
 }
 
 function Divider({ style, ...cssProps }: DividerProps) {
