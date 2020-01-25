@@ -3,12 +3,12 @@ import { theme } from '../types';
 const light: theme = {
   dark: false,
   colors: {
-    primary: '#000',
-    accent: '#F7E9EF',
-    background: '#F1F5FB',
+    primary: '#3c40c6',
+    accent: 'rgba(0,0,0,0.25)',
+    background: '#fff',
     surface: '#fff',
-    text: 'rgba(0, 0, 0, 0.85)',
-    textMuted: 'rgb(124, 117, 116)',
+    text: '#000',
+    textMuted: 'rgba(0,0,0,0.4)',
     divider: 'rgba(100, 100, 100, 0.2)'
   },
   insets: {
@@ -25,10 +25,12 @@ const dark: theme = {
   dark: true,
   colors: {
     ...light.colors,
-    background: '#080808',
+    background: '#02000c',
     surface: '#222',
     primary: '#ffbe76',
-    text: '#fff',
+    accent: '#ffffff',
+    text: 'rgba(255, 255, 255, 0.9)',
+    textMuted: 'rgba(255,255,255,0.6)',
     divider: 'rgba(255, 255, 255, 0.2)'
   }
 };

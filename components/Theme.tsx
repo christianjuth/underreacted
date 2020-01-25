@@ -1,35 +1,22 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { window } from 'browser-monads';
 import { theme as themeType } from '../types';
 import { theme } from '../constants';
+import { useSelector } from 'react-redux';
 
-const Context = React.createContext<themeType>(theme.light);
-
-function prefersDark(): boolean {
-  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-}
+const Context = React.createContext<themeType>(theme.dark);
 
 function Provider({ children }: { children: any }) {
 
-  let [activeTheme, setActiveTheme] = useState<themeType>(theme.dark);
+  let [activeTheme, setActiveTheme] = useState<themeType>(theme.dark),
+    dark = useSelector(s => s.theme.darkMode);
 
   useEffect(() => {
-    const updateTheme = () => {
-      if(prefersDark()) {
-        setActiveTheme(theme.dark);
-      } else {
-        setActiveTheme(theme.light);
-      }
-    };
-    // updateTheme();
-    // window.addEventListener('load', updateTheme);
-    // window.addEventListener('resize', updateTheme);
-    setTimeout(() => updateTheme(), 5000);
-    return () => {
-      window.removeEventListener('load', updateTheme);
-      window.removeEventListener('resize', updateTheme);
+    if(dark) {
+      setActiveTheme(theme.dark);
+    } else {
+      setActiveTheme(theme.light);
     }
-  }, [window]);
+  }, [dark]);
 
   useEffect(() => {
     document.body.style.background = activeTheme.colors.background;
@@ -62,7 +49,6 @@ export function Consumer({ children }) {
 }
 
 export default {
-  prefersDark,
   Context,
   Provider,
   Consumer,

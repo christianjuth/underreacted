@@ -4,8 +4,9 @@ import * as Grid from './Grid';
 import Text from './Text';
 import Section from './Section';
 import Divider from './Divider';
-import FlatList from './FlatList';
 import Link from './Link';
+import Author from './Author';
+import Header from './Header';
 
 export {
   Theme,
@@ -14,6 +15,7 @@ export {
   Text,
   Section,
   Divider,
-  FlatList,
-  Link
+  Link,
+  Author,
+  Header
 }

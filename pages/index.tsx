@@ -1,27 +1,8 @@
 import React, { useState, useEffect } from "react"
-// import Image from "../components/image"
-// import SEO from "../components/seo"
-
-
 import client from '../client';
-import { Section, Text, Divider, Grid, Theme, Link } from '../components';
+import { Section, Text, Divider, Theme, 
+         Link, ActivityIndicator, Author } from '../components';
 import dayjs from 'dayjs';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { BLOCKS, MARKS } from '@contentful/rich-text-types';
-let { Row, Col } = Grid;
-
-let profile = require('../images/profile.png');
-
-
-let options = {
-  // renderMark: {
-  //   [MARKS.BOLD]: text => <Bold>{text}</Bold>,
-  // },
-  renderNode: {
-    [BLOCKS.PARAGRAPH]: (node, children) => <Text variant='p'>{children}</Text>,
-  },
-};
-
 
 function IndexPage(){
   let { colors } = Theme.useTheme(),
@@ -34,29 +15,10 @@ function IndexPage(){
     });
   }, []);
 
+  if(items.length === 0) return <ActivityIndicator.Screen/>;
+
   return (
-    <div style={{flexDirection: 'column'}}>
-      <Section paddingBottom="20px">
-        <Text variant='h3'>Underreacted</Text>
-        <br/>
-        <div style={{
-          width: 370, 
-          border: `1px solid ${colors.divider}`, 
-          borderRadius: 37, 
-          padding: 10
-        }}>
-          <Row spacing={15}>
-            <Col xs='70px'>
-              <img style={{width: '100%', borderRadius: '100%'}} alt='' src={profile}/>
-            </Col>
-            <Col justifyContent='center'>
-              <Text variant='p' noPadding>
-                Personal blog of <Link href='https://christianjuth.com'>Christian Juth</Link><br/> Everything I say with a grain of salt
-              </Text>
-            </Col>
-          </Row>
-        </div>
-      </Section>
+    <>
       <Section>
         {/* <SEO title="Home" /> */}
         {items.map(({fields, sys}) => (
@@ -67,15 +29,13 @@ function IndexPage(){
             style={{textDecoration: 'none'}}
           >
             <Text variant='h2' color='primary'>{fields.title}</Text>
-            <Text variant='p'>{dayjs(sys.updatedAt).format('MMMM DD, YYYY')}</Text>
-            <Text variant='p' noPadding>{fields.subtitle}</Text>
-            <br/>
-            <Divider/>
+            <Text variant='h5'>{dayjs(sys.updatedAt).format('MMMM DD, YYYY')}</Text>
+            <Text variant='p'>{fields.subtitle}</Text>
             <br/>
           </Link.Next>
         ))}
       </Section>
-    </div>
+    </>
   );
 }
 

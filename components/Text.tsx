@@ -15,12 +15,14 @@ function Text({ children, color, variant, noPadding, style, className, ...cssPro
   const { colors } = useTheme();
 
   let computedColor = colors.text;
-  if(color === 'muted' || ['h4', 'h5', 'h6'].includes(variant)) {
+  if(color === 'muted') {
     computedColor = colors.textMuted;
   } else if(color === 'primary') {
     computedColor = colors.primary;
   } else if(color === 'accent') {
     computedColor = colors.accent;
+  } else if(['h3', 'h4', 'h5', 'h6'].includes(variant)) {
+    computedColor = colors.textMuted;
   } else if(color) {
     computedColor = color;
   }
