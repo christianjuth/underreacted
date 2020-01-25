@@ -4,7 +4,7 @@ const light: theme = {
   dark: false,
   colors: {
     primary: '#3c40c6',
-    accent: 'rgba(0,0,0,0.25)',
+    accent: '#222',
     background: '#fff',
     surface: '#fff',
     text: '#000',

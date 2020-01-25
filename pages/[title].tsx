@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react"
-import { useRouter } from 'next/router';
+import React from "react"
 // import SEO from "../components/seo"
-
 
 import client from '../client';
 import { Section, Text, Divider, ActivityIndicator, Link } from '../components';
@@ -19,39 +17,18 @@ const renderers = {
 }
 
 
-function IndexPage(){
-  let { query } = useRouter(),
-    [item, setItem] = useState(),
-    [notFound, setNotFound] = useState(false);
-
-  useEffect(() => {
-    let { title } = query;
-
-    let computedTitle = typeof title === "string" ? title.replace(/-/g, ' ') : title[0].replace(/-/g, ' ');
-
-    client.getEntries({
-      content_type: 'blogPost',
-      'fields.title[match]': computedTitle
-    }).then(function (entries) {
-      if(entries.items.length === 0) {
-        setNotFound(true);
-      } else {
-        setItem(entries.items[0]);
-      }
-    });
-  }, [query.title]);  
-
+function BlogPost({ notFound, entry }){
   if(notFound) return <NotFoundPage/>;
 
-  if(!item) return <ActivityIndicator.Screen/>;
+  if(!entry) return <ActivityIndicator.Screen/>;
 
-  let { fields, sys } = item;
+  let { fields, sys } = entry;
   return (
     <Section>
       {/* <SEO title="Home" /> */}
       <Text variant='h1' color='primary'>{fields.title}</Text>
       <Text variant='h5' paddingBottom='1rem'>
-        {dayjs(sys.updatedAt).format('MMMM DD, YYYY')} – <Link href='https://twitter.com/christianjuth'>@christianjuth</Link>
+        {dayjs(sys.updatedAt).format('MMMM DD, YYYY')} – <Link style={{textDecoration: 'none'}} href='https://twitter.com/christianjuth'>@christianjuth</Link>
       </Text>
       <Divider/>
       <ReactMarkdown 
@@ -62,4 +39,27 @@ function IndexPage(){
   );
 }
 
-export default IndexPage;
+BlogPost.getInitialProps = async ctx => {
+  let { title } = ctx.query,
+    computedTitle = typeof title === "string" ? title.replace(/-/g, ' ') : title[0].replace(/-/g, ' ');
+
+  let entries = await client.getEntries({
+    content_type: 'blogPost',
+    'fields.title[match]': computedTitle
+  });
+    
+  let notFound = false,
+    entry = null;
+  if(entries.items.length === 0) {
+    notFound = true;
+  } else {
+    entry = entries.items[0];
+  }
+
+  return { 
+    notFound,
+    entry
+  };
+};
+
+export default BlogPost;
