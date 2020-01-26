@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import client from '../client';
 import { Section, Text, Link, ActivityIndicator } from '../components';
 import dayjs from 'dayjs';

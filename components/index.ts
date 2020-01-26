@@ -5,7 +5,6 @@ import Text from './Text';
 import Section from './Section';
 import Divider from './Divider';
 import Link from './Link';
-import Author from './Author';
 import Header from './Header';
 
 export {
@@ -16,6 +15,5 @@ export {
   Section,
   Divider,
   Link,
-  Author,
   Header
 }

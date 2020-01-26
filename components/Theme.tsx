@@ -1,29 +1,20 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { theme as themeType } from '../types';
 import { theme } from '../constants';
-import { useSelector } from 'react-redux';
 
 const Context = React.createContext<themeType>(theme.dark);
 
 function Provider({ children }: { children: any }) {
-
-  let [activeTheme, setActiveTheme] = useState<themeType>(theme.dark),
-    dark = useSelector(s => s.theme.darkMode);
+  let isBrowser = typeof(window) !== 'undefined';
 
   useEffect(() => {
-    if(dark) {
-      setActiveTheme(theme.dark);
-    } else {
-      setActiveTheme(theme.light);
+    if(isBrowser) {
+      window.document.body.style.background = theme.dark.colors.background;
     }
-  }, [dark]);
-
-  useEffect(() => {
-    document.body.style.background = activeTheme.colors.background;
-  }, [activeTheme]);
+  }, [isBrowser]);
 
   return (
-    <Context.Provider value={{...activeTheme}}>
+    <Context.Provider value={theme.dark}>
       {children}
     </Context.Provider>
   );

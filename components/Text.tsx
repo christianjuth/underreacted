@@ -21,7 +21,7 @@ function Text({ children, color, variant, noPadding, style, className, ...cssPro
     computedColor = colors.primary;
   } else if(color === 'accent') {
     computedColor = colors.accent;
-  } else if(['h3', 'h4', 'h5', 'h6'].includes(variant)) {
+  } else if(['h6'].includes(variant)) {
     computedColor = colors.textMuted;
   } else if(color) {
     computedColor = color;

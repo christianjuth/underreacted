@@ -3,17 +3,14 @@ import Section from './Section';
 import Text from './Text';
 import Grid from './Grid';
 import { useTheme } from './Theme';
-import { useDispatch } from 'react-redux';
-import { themeActions } from '../store/ducks/theme';
 import Link from './Link';
-import Moon from 'react-ionicons/lib/MdMoon';
-import Sun from 'react-ionicons/lib/MdSunny';
+import Twitter from 'react-ionicons/lib/LogoTwitter';
+import LogoGithub from 'react-ionicons/lib/LogoGithub';
 
-let { Row, Col } = Grid;
+let { Row } = Grid;
 
 function Header() {
-  let { colors, dark } = useTheme(), 
-    dispatch = useDispatch();
+  let { colors } = useTheme();
 
   return (
     <Section paddingBottom={0} zIndex={1000} position='relative'>
@@ -21,13 +18,9 @@ function Header() {
         <Link.Next href='/' style={{textDecoration: 'none'}}>
           <Text variant='h3' color='accent'>Underreacted</Text>
         </Link.Next>
-        <Col/>
-        <div 
-          style={{cursor: 'pointer'}} 
-          onClick={() => dispatch(themeActions.darkModeToggle())}
-        >
-          {dark ? <Moon color={colors.accent}/> : <Sun color='#f1c40f'/>}
-        </div>
+        <div style={{flex: 1}}/>
+        <LogoGithub color={colors.accent} style={{marginRight: 10}}/>
+        <Twitter color={colors.accent}/>
       </Row>
     </Section>
   );

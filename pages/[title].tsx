@@ -2,6 +2,7 @@ import React from "react"
 // import SEO from "../components/seo"
 
 import client from '../client';
+import styled from 'styled-components';
 import { Section, Text, Divider, ActivityIndicator, Link } from '../components';
 import dayjs from 'dayjs';
 import ReactMarkdown from 'react-markdown';
@@ -10,10 +11,22 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 let hljs = require('react-syntax-highlighter/dist/cjs/styles/hljs');
 
 
+const InlineCode = styled.span`
+  font-family: monospace;
+  display: inline;
+  border-radius: 7px;
+  padding: 4px 6px;
+  background-color: rgb(43, 43, 43);
+  color: rgb(245, 171, 53);
+`
+
+
 const renderers = {
   paragraph: (props) => <Text variant='p' {...props}/>,
   code: ({ value, language }) => <SyntaxHighlighter language={language} style={hljs.a11yDark}>{value}</SyntaxHighlighter>,
-  inlineCode: ({ value }) => <SyntaxHighlighter className='inline-code' useInlineStyles={true} style={hljs.a11yDark}>{value}</SyntaxHighlighter>,
+  inlineCode: ({ value }) => (
+    <InlineCode>{value}</InlineCode>
+  ),
 }
 
 
