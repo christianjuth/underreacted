@@ -6,9 +6,11 @@ body {
 }
 
 * {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Rubik', sans-serif;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -37,26 +39,27 @@ h2 {
 }
 
 h3 {
-  font-weight: 700;
+  font-weight: 300;
   font-size: 1.3rem;
   padding-bottom: 5px;
+  -webkit-text-stroke: 0.3px;
 }
 
 h5 {
-  font-weight: 400;
-  font-size: 1em;
+  font-weight: 300;
+  font-size: 1.05rem;
   padding-bottom: 7px;
 }
 
 p {
-  font-size: 1.1rem;
-  line-height: 1.9rem;
+  font-size: 1.25rem;
+  line-height: 2rem;
   margin-bottom: 22px;
 }
 
 code, code *,
 pre, pre * {
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-family: monospace;
 }
 

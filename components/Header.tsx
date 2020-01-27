@@ -13,14 +13,18 @@ function Header() {
   let { colors } = useTheme();
 
   return (
-    <Section paddingBottom={0} zIndex={1000} position='relative'>
+    <Section paddingBottom='5px' zIndex={1000} position='relative'>
       <Row alignItems='center'>
         <Link.Next href='/' style={{textDecoration: 'none'}}>
           <Text variant='h3' color='accent'>Underreacted</Text>
         </Link.Next>
         <div style={{flex: 1}}/>
-        <LogoGithub color={colors.accent} style={{marginRight: 10}}/>
-        <Twitter color={colors.accent}/>
+        <a href='https://github.com/christianjuth' style={{display: 'inline-flex'}}>
+          <LogoGithub color={colors.accent} style={{marginRight: 10}}/>
+        </a>
+        <a href='https://twitter.com/christianjuth' style={{display: 'inline-flex'}}>
+          <Twitter color={colors.accent}/>
+        </a>
       </Row>
     </Section>
   );

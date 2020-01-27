@@ -5,7 +5,7 @@ const dark: theme = {
   colors: {
     background: '#020917',
     surface: '#222',
-    primary: '#ffbe76',
+    primary: '#fa65c5',
     accent: '#ffffff',
     text: 'rgba(255, 255, 255, 0.9)',
     textMuted: 'rgba(255,255,255,0.6)',

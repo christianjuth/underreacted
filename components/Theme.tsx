@@ -1,17 +1,17 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { theme as themeType } from '../types';
 import { theme } from '../constants';
 
 const Context = React.createContext<themeType>(theme.dark);
 
 function Provider({ children }: { children: any }) {
-  let isBrowser = typeof(window) !== 'undefined';
-
-  useEffect(() => {
-    if(isBrowser) {
-      window.document.body.style.background = theme.dark.colors.background;
-    }
-  }, [isBrowser]);
+  
+  // let isBrowser = typeof(window) !== 'undefined';
+  // useEffect(() => {
+  //   if(isBrowser) {
+  //     window.document.body.style.background = theme.dark.colors.background;
+  //   }
+  // }, [isBrowser]);
 
   return (
     <Context.Provider value={theme.dark}>
