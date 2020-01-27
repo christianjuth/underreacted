@@ -1,12 +1,10 @@
 import React from "react"
-// import SEO from "../components/seo"
-
-import client from '../client';
+import {drafts} from '../../client';
 import styled from 'styled-components';
-import { Section, Text, Divider, ActivityIndicator, Link } from '../components';
+import { Section, Text, Divider, ActivityIndicator, Link } from '../../components';
 import dayjs from 'dayjs';
 import ReactMarkdown from 'react-markdown';
-import NotFoundPage from './404';
+import NotFoundPage from '../404';
 import { Helmet } from 'react-helmet';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 let hljs = require('react-syntax-highlighter/dist/cjs/styles/hljs');
@@ -35,13 +33,15 @@ function BlogPost({ notFound, entry }){
   if(!entry) return <ActivityIndicator.Screen/>;
 
   let { fields, sys } = entry;
+
+  console.log(fields);
+
   return (
     <>
       <Helmet>
         <title>{fields.title}</title>
       </Helmet>
       <Section>
-        {/* <SEO title="Home" /> */}
         <Text variant='h1' color='primary'>{fields.title}</Text>
         <Text variant='h5' paddingBottom='1rem'>
           {dayjs(sys.updatedAt).format('MMM DD, YYYY')} – <Link style={{textDecoration: 'none'}} href='https://twitter.com/christianjuth'>@christianjuth</Link>
@@ -57,25 +57,28 @@ function BlogPost({ notFound, entry }){
 }
 
 BlogPost.getInitialProps = async ctx => {
-  let { title } = ctx.query,
-    computedTitle = typeof title === "string" ? title.replace(/-/g, ' ') : title[0].replace(/-/g, ' ');
+  let { id } = ctx.query;
 
-  let entries = await client.getEntries({
-    content_type: 'blogPost',
-    'fields.title[match]': computedTitle
-  });
-    
-  let notFound = false,
-    entry = null;
-  if(entries.items.length === 0) {
+  let entry,
+    seo, 
+    notFound = false;
+  try {
+    entry = await drafts.getEntry(id);
+    seo = {
+      title: entry.fields.title,
+      description: entry.fields.subtitle,
+      twitterHandle: '@christianjuth',
+      type: 'article'
+    };
+  } catch(e) {
     notFound = true;
-  } else {
-    entry = entries.items[0];
   }
+   
 
   return { 
     notFound,
-    entry
+    entry,
+    seo
   };
 };
 

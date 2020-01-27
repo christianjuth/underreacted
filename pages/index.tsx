@@ -18,7 +18,7 @@ function IndexPage({ items }){
           <ActivityIndicator.Touchable key={fields.title}>
             <Link.Next 
               href='/[title]' 
-              as={`/${fields.title.toLowerCase().replace(/\s/g, '-')}`}
+              as={`/${fields.slug}`}
               style={{textDecoration: 'none'}}
             >
               <Text variant='h2' color='primary'>{fields.title}</Text>

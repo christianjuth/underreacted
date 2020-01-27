@@ -57,6 +57,11 @@ p {
   margin-bottom: 22px;
 }
 
+a {
+  color: #fa65c5;
+  text-decoration: none;
+}
+
 code, code *,
 pre, pre * {
   font-size: 1rem;

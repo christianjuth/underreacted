@@ -6,6 +6,7 @@ import Section from './Section';
 import Divider from './Divider';
 import Link from './Link';
 import Header from './Header';
+import SEO from './SEO';
 
 export {
   Theme,
@@ -15,5 +16,6 @@ export {
   Section,
   Divider,
   Link,
-  Header
+  Header,
+  SEO
 }

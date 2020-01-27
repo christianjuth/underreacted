@@ -20,7 +20,7 @@ function Header() {
         </Link.Next>
         <div style={{flex: 1}}/>
         <a href='https://github.com/christianjuth' style={{display: 'inline-flex'}}>
-          <LogoGithub color={colors.accent} style={{marginRight: 10}}/>
+          <LogoGithub color={colors.accent} style={{marginRight: 12}}/>
         </a>
         <a href='https://twitter.com/christianjuth' style={{display: 'inline-flex'}}>
           <Twitter color={colors.accent}/>
