@@ -16,7 +16,6 @@ export default class MyDocument extends Document {
         <Head>
           {this.props.styleTags}
           <link href="https://fonts.googleapis.com/css?family=Montserrat:900|Rubik:300&display=swap" rel="stylesheet"/>
-          <title>Underreacted</title>
         </Head>
         <body>
           <Main />

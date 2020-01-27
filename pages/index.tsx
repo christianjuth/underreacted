@@ -15,17 +15,18 @@ function IndexPage({ items }){
       <Section>
         {/* <SEO title="Home" /> */}
         {items.map(({fields, sys}) => (
-          <Link.Next 
-            key={fields.title} 
-            href='/[title]' 
-            as={`/${fields.title.toLowerCase().replace(/\s/g, '-')}`}
-            style={{textDecoration: 'none'}}
-          >
-            <Text variant='h2' color='primary'>{fields.title}</Text>
-            <Text variant='h5'>{dayjs(sys.updatedAt).format('MMMM DD, YYYY')}</Text>
-            <Text variant='h5'>{fields.subtitle}</Text>
-            <br/>
-          </Link.Next>
+          <ActivityIndicator.Touchable key={fields.title}>
+            <Link.Next 
+              href='/[title]' 
+              as={`/${fields.title.toLowerCase().replace(/\s/g, '-')}`}
+              style={{textDecoration: 'none'}}
+            >
+              <Text variant='h2' color='primary'>{fields.title}</Text>
+              <Text variant='h5'>{dayjs(sys.updatedAt).format('MMMM DD, YYYY')}</Text>
+              <Text variant='h5'>{fields.subtitle}</Text>
+              <br/>
+            </Link.Next>
+          </ActivityIndicator.Touchable>
         ))}
       </Section>
     </>
