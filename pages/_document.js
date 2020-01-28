@@ -21,7 +21,9 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           {this.props.styleTags}
-          <link href="https://fonts.googleapis.com/css?family=Montserrat:900|Rubik:300&display=swap" rel="stylesheet"/>
+          <link href="https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap" rel="stylesheet"/>
+          <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+          <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
           <SEO data={seo} />
         </Head>
         <body>

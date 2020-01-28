@@ -17,6 +17,3 @@ const drafts = contentful.createClient({
 
 client.drafts = drafts;
 export default client;
-export {
-  drafts
-};

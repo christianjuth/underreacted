@@ -1,13 +1,13 @@
-import React from "react"
-import {drafts} from '../../client';
+import React, { useState, useEffect } from "react"
+import client from '../../client';
 import styled from 'styled-components';
 import { Section, Text, Divider, ActivityIndicator, Link } from '../../components';
 import dayjs from 'dayjs';
 import ReactMarkdown from 'react-markdown';
 import NotFoundPage from '../404';
 import { Helmet } from 'react-helmet';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-let hljs = require('react-syntax-highlighter/dist/cjs/styles/hljs');
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { prism } from '../../constants';
 
 const InlineCode = styled.span`
   font-family: monospace;
@@ -15,26 +15,33 @@ const InlineCode = styled.span`
   border-radius: 7px;
   padding: 4px 6px;
   background-color: #2d2c56;
-`
-
+`;
 
 const renderers = {
   paragraph: (props) => <Text variant='p' {...props}/>,
-  code: ({ value, language }) => <SyntaxHighlighter language={language} style={hljs.shadesOfPurple}>{value}</SyntaxHighlighter>,
+  code: ({ value, language }) => <SyntaxHighlighter language={language} style={prism}>{value||''}</SyntaxHighlighter>,
   inlineCode: ({ value }) => (
     <InlineCode>{value}</InlineCode>
   ),
 }
 
 
-function BlogPost({ notFound, entry }){
+function BlogPost({ notFound, entry, id }){
   if(notFound) return <NotFoundPage/>;
-
   if(!entry) return <ActivityIndicator.Screen/>;
 
-  let { fields, sys } = entry;
+  // copy entry so it can be updated
+  let [ post, setPost ] = useState(entry);
 
-  console.log(fields);
+  useEffect(() => {
+    async function refresh() {
+      setPost(await client.drafts.getEntry(id));
+    }
+    window.addEventListener("focus", refresh); 
+    return () => window.removeEventListener("focus", refresh);
+  }, [id]);
+
+  let { fields, sys } = post;
 
   return (
     <>
@@ -63,7 +70,7 @@ BlogPost.getInitialProps = async ctx => {
     seo, 
     notFound = false;
   try {
-    entry = await drafts.getEntry(id);
+    entry = await client.drafts.getEntry(id);
     seo = {
       title: entry.fields.title,
       description: entry.fields.subtitle,
@@ -76,6 +83,7 @@ BlogPost.getInitialProps = async ctx => {
    
 
   return { 
+    id,
     notFound,
     entry,
     seo

@@ -16,7 +16,7 @@ function Header() {
     <Section paddingBottom='5px' zIndex={1000} position='relative'>
       <Row alignItems='center'>
         <Link.Next href='/' style={{textDecoration: 'none'}}>
-          <Text variant='h3' color='accent'>Underreacted</Text>
+          <Text variant='h4' color='accent' noPadding>Underreacted</Text>
         </Link.Next>
         <div style={{flex: 1}}/>
         <a href='https://github.com/christianjuth' style={{display: 'inline-flex'}}>

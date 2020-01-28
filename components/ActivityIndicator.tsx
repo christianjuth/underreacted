@@ -8,7 +8,7 @@ function ActivityIndicator() {
   useEffect(() => {
     let id = setTimeout(() => {
       setVisible(true);
-    }, 500);
+    }, 750);
     return () => clearTimeout(id);
   }, []);
 
@@ -46,7 +46,7 @@ export function ActivityIndicatorTouchable({ children }) {
     if(scheduled) {
         id = setTimeout(() => {
         setVisible(true);
-      }, 500);
+      }, 750);
     }
     return () => clearTimeout(id);
   }, [scheduled]);

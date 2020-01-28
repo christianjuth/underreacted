@@ -14,7 +14,7 @@ interface TextProps extends CSS.Properties {
 function Text({ children, color, variant, noPadding, style, className, ...cssProperties }: TextProps) {
   const { colors } = useTheme();
 
-  let computedColor = colors.text;
+  let computedColor = null;
   if(color === 'muted') {
     computedColor = colors.textMuted;
   } else if(color === 'primary') {

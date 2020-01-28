@@ -6,8 +6,8 @@ import dayjs from 'dayjs';
 import ReactMarkdown from 'react-markdown';
 import NotFoundPage from './404';
 import { Helmet } from 'react-helmet';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-let hljs = require('react-syntax-highlighter/dist/cjs/styles/hljs');
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { prism } from '../constants';
 
 const InlineCode = styled.span`
   font-family: monospace;
@@ -15,12 +15,11 @@ const InlineCode = styled.span`
   border-radius: 7px;
   padding: 4px 6px;
   background-color: #2d2c56;
-`
-
+`;
 
 const renderers = {
   paragraph: (props) => <Text variant='p' {...props}/>,
-  code: ({ value, language }) => <SyntaxHighlighter language={language} style={hljs.shadesOfPurple}>{value}</SyntaxHighlighter>,
+  code: ({ value, language }) => <SyntaxHighlighter language={language} style={prism}>{value||''}</SyntaxHighlighter>,
   inlineCode: ({ value }) => (
     <InlineCode>{value}</InlineCode>
   ),

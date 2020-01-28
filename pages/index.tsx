@@ -21,7 +21,7 @@ function IndexPage({ items }){
               as={`/${fields.slug}`}
               style={{textDecoration: 'none'}}
             >
-              <Text variant='h2' color='primary'>{fields.title}</Text>
+              <Text variant='h2' color='primary' paddingBottom='8px'>{fields.title}</Text>
               <Text variant='h5'>{dayjs(sys.updatedAt).format('MMMM DD, YYYY')}</Text>
               <Text variant='h5'>{fields.subtitle}</Text>
               <br/>

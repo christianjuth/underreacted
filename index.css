@@ -6,7 +6,7 @@ body {
 }
 
 * {
-  font-family: 'Rubik', sans-serif;
+  font-family: sans-serif, 'Rubik';
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
@@ -21,45 +21,58 @@ h1, h2, h3, h4, h5, h6, p {
 
 h1,
 h2 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Rubik', sans-serif;
 }
 
 h1 {
-  font-weight: 800;
-  font-size: 2.6rem;
-  line-height: 3.2rem;
-  padding-bottom: 15px;
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 3.4rem;
+  padding-bottom: 18px;
 }
 
 h2 {
-  font-weight: 800;
+  font-weight: 700;
   font-size: 1.8rem;
   line-height: 2.45rem;
-  padding-bottom: 5px;
+  padding-bottom: 18px;
 }
 
 h3 {
-  font-weight: 300;
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding-bottom: 18px;
+}
+
+h4 {
+  font-weight: 700;
   font-size: 1.3rem;
-  padding-bottom: 5px;
-  -webkit-text-stroke: 0.3px;
+  padding-bottom: 18px;
 }
 
 h5 {
-  font-weight: 300;
+  font-weight: 400;
   font-size: 1.05rem;
   padding-bottom: 7px;
 }
 
 p {
-  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 400;
+  font-size: 1.2rem;
   line-height: 2rem;
   margin-bottom: 22px;
+  letter-spacing: 0.2px;
 }
 
 a {
   color: #fa65c5;
   text-decoration: none;
+}
+
+strong {
+  font-weight: 700;
+  letter-spacing: 0.3px;
 }
 
 code, code *,
@@ -69,12 +82,18 @@ pre, pre * {
 }
 
 pre {
-  padding: 1rem !important;
+  padding: 1.2rem !important;
   border-radius: 7px;
-  margin-top: 0;
-  margin-bottom: 22px;
+  margin: 5px 0 24px;
 }
 
 .hr {
-  margin-bottom: 1rem;
+  margin: 8px 0 18px;
+}
+
+::selection {
+  background: #76d9e6; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #76d9e6; /* Gecko Browsers */
 }
