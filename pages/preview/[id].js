@@ -73,7 +73,7 @@ BlogPost.getInitialProps = async ctx => {
     entry = await client.drafts.getEntry(id);
     seo = {
       description: entry.fields.subtitle,
-      pathname: `/${slug}`,
+      pathname: `/${entry.fields.slug}`,
       title: entry.fields.title,
       type: 'article',
     };

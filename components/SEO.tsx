@@ -19,6 +19,7 @@ function SEO(props: SEOData) {
     facebookAppId: '885582855189621',
     host: 'https://underreacted.io',
     imageSrc: 'https://underreacted.io/social-media-card-image.png',
+    imageAlt: 'logo',
     pathname: '/',
     title: 'Underreacted',
     twitterHandle: '@christianjuth',
@@ -40,6 +41,7 @@ function SEO(props: SEOData) {
       <meta property="og:type" content={data.type} />
       <meta property="og:url" content={data.host+data.pathname} />
       <meta property="og:image" content={data.imageSrc} />
+      <meta property="fb:image:alt" content={data.imageAlt} />
       <meta property="og:description" content={data.description} />
       <meta property="og:site_name" content='Underreacted' />
       <meta property="fb:app_id" content={data.facebookAppId} />

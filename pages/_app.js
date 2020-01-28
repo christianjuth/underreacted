@@ -3,6 +3,8 @@ import 'react-activity/dist/react-activity.css';
 import React from "react";
 import { Grid, Theme, Header } from '../components';
 import NextApp from 'next/app';
+import Router from "next/router";
+import withGA from "next-ga";
 
 class App extends NextApp{
   render() {
@@ -18,4 +20,4 @@ class App extends NextApp{
   }
 }
 
-export default App;
+export default withGA("UA-157124361-1", Router)(App);
