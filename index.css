@@ -87,6 +87,13 @@ pre {
   margin: 5px 0 24px;
 }
 
+blockquote {
+  border-left: 7px solid rgba(255, 255, 255, 0.6);
+  margin: 6px 0 26px;
+  padding: 18px 35px 0;
+  font-style: italic;
+}
+
 .hr {
   margin: 8px 0 18px;
 }
