@@ -1,7 +1,7 @@
 import React from "react"
 import client from '../client';
 import styled from 'styled-components';
-import { Section, Text, Divider, ActivityIndicator, Link, SEO } from '../components';
+import { Section, Text, Divider, ActivityIndicator, Link } from '../components';
 import dayjs from 'dayjs';
 import ReactMarkdown from 'react-markdown';
 import NotFoundPage from './404';
@@ -70,10 +70,10 @@ BlogPost.getInitialProps = async ctx => {
   } else {
     entry = entries.items[0];
     seo = {
-      title: entry.fields.title,
       description: entry.fields.subtitle,
-      twitterHandle: '@christianjuth',
-      type: 'article'
+      pathname: `/${slug}`,
+      title: entry.fields.title,
+      type: 'article',
     };
   }
 

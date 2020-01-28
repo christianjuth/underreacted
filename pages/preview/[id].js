@@ -72,16 +72,15 @@ BlogPost.getInitialProps = async ctx => {
   try {
     entry = await client.drafts.getEntry(id);
     seo = {
-      title: entry.fields.title,
       description: entry.fields.subtitle,
-      twitterHandle: '@christianjuth',
-      type: 'article'
+      pathname: `/${slug}`,
+      title: entry.fields.title,
+      type: 'article',
     };
   } catch(e) {
     notFound = true;
   }
    
-
   return { 
     id,
     notFound,
