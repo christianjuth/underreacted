@@ -1,12 +1,16 @@
 import React from 'react';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
-import { useTheme } from './Theme';
+import { useTheme, Theme } from 'react-context-theming';
 import * as CSS from 'csstype';
 
 interface LinkProps {
   href?: string,
   children: React.ReactNode,
   style?: CSS.Properties,
+}
+
+interface newThemeType extends Theme {
+  zIndex: number
 }
 
 function Link({ href, children, style }: LinkProps) {

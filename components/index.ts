@@ -1,4 +1,4 @@
-import Theme from './Theme';
+// import Theme from './Theme';
 import ActivityIndicator from './ActivityIndicator';
 import * as Grid from './Grid';
 import Text from './Text';
@@ -9,7 +9,7 @@ import Header from './Header';
 import SEO from './SEO';
 
 export {
-  Theme,
+  // Theme,
   ActivityIndicator,
   Grid,
   Text,

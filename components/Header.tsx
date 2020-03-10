@@ -2,7 +2,7 @@ import React from 'react';
 import Section from './Section';
 import Text from './Text';
 import Grid from './Grid';
-import { useTheme } from './Theme';
+import { useTheme } from 'react-context-theming';
 import Link from './Link';
 import Twitter from 'react-ionicons/lib/LogoTwitter';
 import LogoGithub from 'react-ionicons/lib/LogoGithub';

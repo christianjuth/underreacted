@@ -20,7 +20,7 @@ function Section({ children, style, slim, ...cssStyles }: SectionProps) {
       }}
     >
       <Row style={computedStyle} justifyContent='center'>
-        <Col xs={24} md='675px'>
+        <Col xs={24} md='700px'>
           {children}
         </Col>
       </Row>

@@ -1,6 +1,6 @@
 import React from 'react';
 import * as CSS from 'csstype';
-import { useTheme } from './Theme';
+import { useTheme } from 'react-context-theming';
 
 interface TextProps extends CSS.Properties {
   children: React.ReactNode,

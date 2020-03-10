@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Sentry } from 'react-activity';
-import { Grid, Theme } from '.';
+import { Grid } from '.';
+import { useTheme } from 'react-context-theming';
  
 function ActivityIndicator() {
   const [visible, setVisible] = useState(false);
@@ -16,7 +17,7 @@ function ActivityIndicator() {
 }
 
 export function ActivityIndicatorScreen() {
-  let { colors } = Theme.useTheme();
+  let { colors } = useTheme();
 
   return (
     <Grid.Row style={{
@@ -37,7 +38,7 @@ export function ActivityIndicatorScreen() {
 }
 
 export function ActivityIndicatorTouchable({ children }) {
-  let { colors } = Theme.useTheme(),
+  let { colors } = useTheme(),
     [scheduled, setScheduled] = useState(false),
     [visible, setVisible] = useState(false);
 

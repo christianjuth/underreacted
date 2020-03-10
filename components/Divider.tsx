@@ -1,6 +1,6 @@
 import React from 'react';
 import * as CSS from 'csstype';
-import { useTheme } from './Theme';
+import { useTheme } from 'react-context-theming';
 
 interface DividerProps extends CSS.Properties {
   style?: CSS.Properties

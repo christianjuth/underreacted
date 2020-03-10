@@ -1,8 +1,10 @@
-import { theme } from '../types';
 
-const dark: theme = {
-  dark: true,
+import { Theme, defaultTheme, colors } from 'react-context-theming';
+
+const dark: Theme = {
+  ...defaultTheme,
   colors: {
+    ...defaultTheme.colors,
     background: '#020917',
     surface: '#222',
     primary: '#fa65c5',
@@ -11,12 +13,7 @@ const dark: theme = {
     textMuted: 'rgba(255,255,255,0.6)',
     divider: 'rgba(255, 255, 255, 0.2)'
   },
-  insets: {
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0
-  },
+  dark: true,
   roundness: 10
 };
 

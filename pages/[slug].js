@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Section, Text, Divider, ActivityIndicator, Link } from '../components';
 import dayjs from 'dayjs';
 import ReactMarkdown from 'react-markdown';
-import NotFoundPage from './404';
+import NotFoundPage from './_error';
 import { Helmet } from 'react-helmet';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from '../constants';

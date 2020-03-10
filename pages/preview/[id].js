@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Section, Text, Divider, ActivityIndicator, Link } from '../../components';
 import dayjs from 'dayjs';
 import ReactMarkdown from 'react-markdown';
-import NotFoundPage from '../404';
+import NotFoundPage from '../_error';
 import { Helmet } from 'react-helmet';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { prism } from '../../constants';
@@ -23,6 +23,27 @@ const renderers = {
   inlineCode: ({ value }) => (
     <InlineCode>{value}</InlineCode>
   ),
+  link: (props) => {
+    if(/^https:\/\/snack.expo.io\/@.*\/.*/.test(props.href)) {
+      let id = props.href.match(/@.*\/[^\/]*/)[0];
+      return (
+        <>
+          <div data-snack-id={id} data-snack-platform="web" data-snack-preview="true" data-snack-theme="dark" style={{
+            width: '100%',
+            height: '505px',
+            borderRadius: '7px',
+            background: '#211f42',
+            overflow: 'hidden'
+          }}/>
+          <script async src="https://snack.expo.io/embed.js"></script>
+        </>
+      );
+    }
+
+    else {
+      return <a {...props}/>
+    }
+  }
 }
 
 
