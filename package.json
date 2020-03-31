@@ -18,7 +18,7 @@
     "contentful": "7.14.0",
     "csstype": "2.6.9",
     "dayjs": "1.8.22",
-    "next": "9.3.0",
+    "next": "9.3.2",
     "next-ga": "^2.3.4",
     "react": "16.13.0",
     "react-activity": "^1.2.2",
